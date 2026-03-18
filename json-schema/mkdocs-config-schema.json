@@ -1,0 +1,362 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apievangelist.com/schemas/mkdocs/mkdocs-config.json",
+  "title": "MkDocs Configuration",
+  "description": "Schema for the MkDocs project configuration file (mkdocs.yml). Defines all settings that control site metadata, navigation, themes, plugins, Markdown extensions, and build behavior for generating static documentation sites.",
+  "type": "object",
+  "required": ["site_name"],
+  "properties": {
+    "site_name": {
+      "type": "string",
+      "description": "The main title for the project documentation site. This required setting is passed as the site_name context variable when rendering the theme.",
+      "minLength": 1
+    },
+    "site_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The full canonical URL where the documentation will be hosted. Used to add a canonical link tag to each HTML page and to configure the dev server mount path."
+    },
+    "site_description": {
+      "type": "string",
+      "description": "A description for the documentation project added to the HTML meta tags."
+    },
+    "site_author": {
+      "type": "string",
+      "description": "The name of the author added to the HTML meta tags."
+    },
+    "repo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the source repository (GitHub, Bitbucket, GitLab, etc.). When set, provides a link to the repository on each documentation page."
+    },
+    "repo_name": {
+      "type": "string",
+      "description": "Display name for the repository link. Defaults to 'GitHub', 'Bitbucket', or 'GitLab' when the repo_url matches those domains, otherwise uses the hostname."
+    },
+    "edit_uri": {
+      "type": "string",
+      "description": "Path from repo_url to the docs directory for direct page editing links. Automatically set for known hosts (GitHub, GitLab, Bitbucket). Set to empty string to disable."
+    },
+    "edit_uri_template": {
+      "type": "string",
+      "description": "More flexible alternative to edit_uri using Python format strings. Supports {path}, {path_noext}, and {path!q} (percent-encoded). Mutually exclusive with edit_uri."
+    },
+    "docs_dir": {
+      "type": "string",
+      "description": "The directory containing the documentation Markdown source files.",
+      "default": "docs"
+    },
+    "site_dir": {
+      "type": "string",
+      "description": "The output directory where the generated static site files will be written.",
+      "default": "site"
+    },
+    "copyright": {
+      "type": "string",
+      "description": "A copyright notice to add to the footer of documentation pages."
+    },
+    "nav": {
+      "description": "Defines the navigation structure of the documentation site as a list of title-to-path mappings or nested sections.",
+      "$ref": "#/$defs/NavItem"
+    },
+    "exclude_docs": {
+      "type": "string",
+      "description": "Gitignore-style patterns of files relative to the docs directory to exclude from the site build."
+    },
+    "draft_docs": {
+      "type": "string",
+      "description": "Gitignore-style patterns of files relative to the docs directory to mark as drafts. Draft pages are excluded from production builds."
+    },
+    "not_in_nav": {
+      "type": "string",
+      "description": "Gitignore-style patterns of files relative to the docs directory that are intentionally not included in the nav (suppresses warning log messages)."
+    },
+    "theme": {
+      "description": "The MkDocs theme configuration. Can be a string theme name or an object with theme name and options.",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Theme name string shorthand (e.g., 'mkdocs', 'readthedocs').",
+          "enum": ["mkdocs", "readthedocs"]
+        },
+        {
+          "$ref": "#/$defs/ThemeConfig"
+        }
+      ],
+      "default": "mkdocs"
+    },
+    "dev_addr": {
+      "type": "string",
+      "description": "The IP address and port for the local development server started by mkdocs serve.",
+      "default": "127.0.0.1:8000",
+      "pattern": "^.+:[0-9]+$"
+    },
+    "use_directory_urls": {
+      "type": "boolean",
+      "description": "When true, generates page_name/index.html style URLs. When false, generates page_name.html style files. True generates cleaner URLs.",
+      "default": true
+    },
+    "strict": {
+      "type": "boolean",
+      "description": "When true, enables strict mode which stops the build on warnings rather than continuing.",
+      "default": false
+    },
+    "remote_branch": {
+      "type": "string",
+      "description": "The remote branch to commit to when deploying with mkdocs gh-deploy.",
+      "default": "gh-pages"
+    },
+    "remote_name": {
+      "type": "string",
+      "description": "The remote name to push to when deploying with mkdocs gh-deploy.",
+      "default": "origin"
+    },
+    "extra_css": {
+      "type": "array",
+      "description": "List of additional CSS files from the docs directory to include in the generated site.",
+      "items": {
+        "type": "string",
+        "description": "Path to a CSS file relative to the docs directory."
+      },
+      "default": []
+    },
+    "extra_javascript": {
+      "type": "array",
+      "description": "List of additional JavaScript files from the docs directory to include in the generated site. Items can be strings or script objects with defer/async attributes.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Path to a JavaScript file relative to the docs directory."
+          },
+          {
+            "$ref": "#/$defs/ExtraScript"
+          }
+        ]
+      },
+      "default": []
+    },
+    "extra_templates": {
+      "type": "array",
+      "description": "List of additional Jinja2 HTML or XML template files to build with the global context.",
+      "items": {
+        "type": "string",
+        "description": "Path to a template file."
+      },
+      "default": []
+    },
+    "markdown_extensions": {
+      "type": "array",
+      "description": "List of Python-Markdown extension names or extension configuration objects to enable. Built-in extensions (toc, tables, fenced_code) are always enabled.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Python-Markdown extension name."
+          },
+          {
+            "type": "object",
+            "description": "Extension name mapped to its configuration options.",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "description": "List of MkDocs plugins to use during the build. Each item is either a plugin name string or a mapping of plugin name to its configuration options.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Plugin name as registered via the mkdocs.plugins entry point group."
+          },
+          {
+            "type": "object",
+            "description": "Plugin name mapped to its configuration options.",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        ]
+      },
+      "default": ["search"]
+    },
+    "hooks": {
+      "type": "array",
+      "description": "List of Python script filenames to import as plugin instances. Hooks allow local plugin-like customization without packaging.",
+      "items": {
+        "type": "string",
+        "description": "Path to a Python script file to use as a hook."
+      }
+    },
+    "watch": {
+      "type": "array",
+      "description": "Additional paths to watch for changes during mkdocs serve (triggers live reload).",
+      "items": {
+        "type": "string",
+        "description": "File system path to watch."
+      },
+      "default": []
+    },
+    "extra": {
+      "type": "object",
+      "description": "A mapping of arbitrary data passed to the Jinja2 template context. Allows theme authors to require extra configuration data without explicit MkDocs support.",
+      "additionalProperties": true
+    },
+    "validation": {
+      "$ref": "#/$defs/ValidationConfig",
+      "description": "Configuration for MkDocs validation warnings emitted during the build."
+    }
+  },
+  "$defs": {
+    "NavItem": {
+      "description": "A navigation item which can be a list of title-to-path mappings or nested sections.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "A navigation entry mapping a display title to a page path or a nested list of nav items.",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Path to the Markdown file relative to the docs directory."
+                },
+                {
+                  "$ref": "#/$defs/NavItem"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ThemeConfig": {
+      "type": "object",
+      "description": "Full theme configuration object specifying theme name and theme-specific options.",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The theme name. Use null to use a custom theme without a base theme.",
+          "enum": ["mkdocs", "readthedocs"]
+        },
+        "custom_dir": {
+          "type": "string",
+          "description": "Path to a directory of custom theme overrides. Files here override corresponding theme files."
+        },
+        "static_templates": {
+          "type": "array",
+          "description": "List of templates to render as static pages even without a corresponding Markdown source.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "locale": {
+          "type": "string",
+          "description": "The locale (language code) for theme localization, e.g. 'en', 'fr', 'de'."
+        },
+        "language": {
+          "type": "string",
+          "description": "Alias for locale used by some themes."
+        }
+      },
+      "additionalProperties": true
+    },
+    "ExtraScript": {
+      "type": "object",
+      "description": "A JavaScript file reference with optional loading attributes.",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the JavaScript file relative to the docs directory."
+        },
+        "defer": {
+          "type": "boolean",
+          "description": "When true, adds the defer attribute to the script tag.",
+          "default": false
+        },
+        "async": {
+          "type": "boolean",
+          "description": "When true, adds the async attribute to the script tag.",
+          "default": false
+        },
+        "type": {
+          "type": "string",
+          "description": "The type attribute for the script tag (e.g., 'module')."
+        }
+      }
+    },
+    "ValidationConfig": {
+      "type": "object",
+      "description": "Controls validation behavior and warning levels during site builds.",
+      "properties": {
+        "nav": {
+          "$ref": "#/$defs/NavValidationConfig"
+        },
+        "links": {
+          "$ref": "#/$defs/LinksValidationConfig"
+        }
+      }
+    },
+    "NavValidationConfig": {
+      "type": "object",
+      "description": "Validation settings for navigation structure.",
+      "properties": {
+        "omitted_files": {
+          "type": "string",
+          "description": "Warning level when a doc file is never mentioned in the navigation.",
+          "enum": ["warn", "info", "ignore"],
+          "default": "info"
+        },
+        "not_found": {
+          "type": "string",
+          "description": "Warning level when navigation links to a relative path that does not exist as a page.",
+          "enum": ["warn", "info", "ignore"],
+          "default": "warn"
+        },
+        "absolute_links": {
+          "type": "string",
+          "description": "Warning level when navigation links to an absolute path starting with /.",
+          "enum": ["warn", "info", "ignore", "relative_to_docs"],
+          "default": "info"
+        }
+      }
+    },
+    "LinksValidationConfig": {
+      "type": "object",
+      "description": "Validation settings for in-page Markdown links.",
+      "properties": {
+        "not_found": {
+          "type": "string",
+          "description": "Warning level when a Markdown doc links to a relative path that does not exist.",
+          "enum": ["warn", "info", "ignore"],
+          "default": "warn"
+        },
+        "absolute_links": {
+          "type": "string",
+          "description": "Warning level when a Markdown doc links to an absolute path starting with /.",
+          "enum": ["warn", "info", "ignore", "relative_to_docs"],
+          "default": "info"
+        },
+        "unrecognized_links": {
+          "type": "string",
+          "description": "Warning level when a Markdown doc links to a relative path that does not look like a valid internal link (e.g., ends with /).",
+          "enum": ["warn", "info", "ignore"],
+          "default": "info"
+        },
+        "anchors": {
+          "type": "string",
+          "description": "Warning level when a Markdown doc links to an anchor not present on the target page.",
+          "enum": ["warn", "info", "ignore"],
+          "default": "info"
+        }
+      }
+    }
+  }
+}

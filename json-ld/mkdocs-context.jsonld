@@ -1,0 +1,174 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "mkdocs": "https://www.mkdocs.org/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "doap": "http://usefulinc.com/ns/doap#",
+
+    "MkDocsProject": {
+      "@id": "mkdocs:Project",
+      "@context": {
+        "site_name": {
+          "@id": "dcterms:title"
+        },
+        "site_url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "site_description": {
+          "@id": "dcterms:description"
+        },
+        "site_author": {
+          "@id": "schema:author"
+        },
+        "repo_url": {
+          "@id": "doap:repository",
+          "@type": "@id"
+        },
+        "docs_dir": {
+          "@id": "mkdocs:docsDir"
+        },
+        "site_dir": {
+          "@id": "mkdocs:siteDir"
+        },
+        "theme": {
+          "@id": "mkdocs:theme"
+        },
+        "plugins": {
+          "@id": "mkdocs:plugins",
+          "@container": "@set"
+        },
+        "nav": {
+          "@id": "mkdocs:navigation",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "MkDocsTheme": {
+      "@id": "mkdocs:Theme",
+      "@context": {
+        "name": {
+          "@id": "schema:name"
+        },
+        "custom_dir": {
+          "@id": "mkdocs:customDir"
+        },
+        "locale": {
+          "@id": "schema:inLanguage"
+        }
+      }
+    },
+
+    "MkDocsPlugin": {
+      "@id": "mkdocs:Plugin",
+      "@context": {
+        "name": {
+          "@id": "schema:name"
+        },
+        "entry_point": {
+          "@id": "mkdocs:entryPoint"
+        },
+        "description": {
+          "@id": "dcterms:description"
+        },
+        "supports_multiple_instances": {
+          "@id": "mkdocs:supportsMultipleInstances",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "MkDocsPage": {
+      "@id": "mkdocs:Page",
+      "@context": {
+        "title": {
+          "@id": "dcterms:title"
+        },
+        "file_path": {
+          "@id": "mkdocs:filePath"
+        },
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "content": {
+          "@id": "schema:text"
+        },
+        "previous_page": {
+          "@id": "schema:previousItem",
+          "@type": "@id"
+        },
+        "next_page": {
+          "@id": "schema:nextItem",
+          "@type": "@id"
+        },
+        "parent": {
+          "@id": "schema:isPartOf",
+          "@type": "@id"
+        },
+        "meta": {
+          "@id": "mkdocs:frontmatter"
+        }
+      }
+    },
+
+    "MkDocsNavSection": {
+      "@id": "mkdocs:NavigationSection",
+      "@context": {
+        "title": {
+          "@id": "schema:name"
+        },
+        "children": {
+          "@id": "schema:hasPart",
+          "@container": "@list"
+        },
+        "parent": {
+          "@id": "schema:isPartOf",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "MkDocsFile": {
+      "@id": "mkdocs:File",
+      "@context": {
+        "src_path": {
+          "@id": "mkdocs:sourcePath"
+        },
+        "dest_path": {
+          "@id": "mkdocs:destinationPath"
+        },
+        "name": {
+          "@id": "schema:name"
+        },
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "MkDocsBuild": {
+      "@id": "mkdocs:Build",
+      "@context": {
+        "config": {
+          "@id": "mkdocs:config"
+        },
+        "build_date": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "mkdocs_version": {
+          "@id": "doap:Version"
+        },
+        "strict": {
+          "@id": "mkdocs:strict",
+          "@type": "xsd:boolean"
+        }
+      }
+    }
+  }
+}

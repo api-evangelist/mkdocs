@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apievangelist.com/schemas/mkdocs/mkdocs-plugin.json",
+  "title": "MkDocs Plugin",
+  "description": "Schema for defining and describing an MkDocs plugin. MkDocs plugins are Python packages registered via the mkdocs.plugins entry point group. Each plugin subclasses BasePlugin and implements event hook methods to customize the documentation build pipeline.",
+  "type": "object",
+  "required": ["name", "entry_point"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The plugin name used in mkdocs.yml configuration. Must match the entry point name registered under the mkdocs.plugins group.",
+      "minLength": 1
+    },
+    "entry_point": {
+      "type": "string",
+      "description": "Python dotted module path to the BasePlugin subclass, e.g. 'mypackage.plugin:MyPlugin'.",
+      "pattern": "^[a-zA-Z0-9_.]+:[a-zA-Z0-9_]+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this plugin does."
+    },
+    "supports_multiple_instances": {
+      "type": "boolean",
+      "description": "Whether the plugin supports being listed multiple times in the plugins configuration.",
+      "default": false
+    },
+    "config_schema": {
+      "type": "object",
+      "description": "The configuration options accepted by this plugin in mkdocs.yml. Each key is an option name and the value describes its type and default.",
+      "additionalProperties": {
+        "$ref": "#/$defs/PluginConfigOption"
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "List of MkDocs build pipeline events this plugin hooks into.",
+      "items": {
+        "$ref": "#/$defs/PluginEvent"
+      }
+    }
+  },
+  "$defs": {
+    "PluginConfigOption": {
+      "type": "object",
+      "description": "Describes a single configuration option accepted by a plugin.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The Python type name for this config option (e.g., 'str', 'int', 'bool', 'list', 'dict').",
+          "enum": ["str", "int", "float", "bool", "list", "dict"]
+        },
+        "default": {
+          "description": "The default value used when the option is not provided by the user."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether this option must be provided by the user.",
+          "default": false
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of what this option controls."
+        }
+      }
+    },
+    "PluginEvent": {
+      "type": "object",
+      "description": "Describes a build pipeline event hook implemented by the plugin.",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The event hook method name.",
+          "enum": [
+            "on_startup",
+            "on_shutdown",
+            "on_serve",
+            "on_config",
+            "on_pre_build",
+            "on_files",
+            "on_nav",
+            "on_env",
+            "on_post_build",
+            "on_build_error",
+            "on_pre_template",
+            "on_template_context",
+            "on_post_template",
+            "on_pre_page",
+            "on_page_read_source",
+            "on_page_markdown",
+            "on_page_content",
+            "on_page_context",
+            "on_post_page"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what this plugin does in response to the event."
+        }
+      }
+    }
+  }
+}
