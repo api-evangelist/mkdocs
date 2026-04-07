@@ -11,10 +11,10 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Documentation
-  - Static Site Generator
   - Markdown
-  - Python
   - Open Source
+  - Python
+  - Static Site Generator
 url: >-
   https://raw.githubusercontent.com/api-evangelist/mkdocs/refs/heads/main/apis.yml
 created: '2026-03-18'
