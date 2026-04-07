@@ -1,16 +1,12 @@
 aid: mkdocs
 name: MkDocs
 description: >-
-  MkDocs is a fast, simple, and beautiful static site generator designed for
-  building project documentation from Markdown source files. Written in Python,
-  it reads a single YAML configuration file (mkdocs.yml) and converts a
-  directory of Markdown documents into a self-contained static HTML site. MkDocs
-  supports multiple built-in themes (mkdocs, readthedocs), a rich plugin
-  ecosystem via Python entry points, live-reloading development server, and
-  one-command deployment to GitHub Pages. Its plugin API exposes a comprehensive
-  set of build pipeline event hooks that allow third-party plugins to customize
-  every phase of the build, from configuration loading and file discovery through
-  Markdown rendering and final HTML output.
+  MkDocs is a fast, simple, and beautiful static site generator designed for building
+  project documentation from Markdown source files. Written in Python, it reads a
+  single YAML configuration file (mkdocs.yml) and converts a directory of Markdown
+  documents into a self-contained static HTML site. MkDocs supports multiple built-in
+  themes (mkdocs, readthedocs), a rich plugin ecosystem via Python entry points, live-reloading
+  development server, and one-command deployment to GitHub Pages.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
