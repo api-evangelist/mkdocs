@@ -18,8 +18,8 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/mkdocs/refs/heads/main/apis.yml
 created: '2026-03-18'
-modified: '2026-03-18'
-specificationVersion: '0.19'
+modified: '2026-04-28'
+specificationVersion: '0.20'
 apis: []
 common:
   - type: Website
