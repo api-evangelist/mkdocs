@@ -8,7 +8,7 @@ description: >-
   themes (mkdocs, readthedocs), a rich plugin ecosystem via Python entry points, live-reloading
   development server, and one-command deployment to GitHub Pages.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Documentation
   - Markdown
