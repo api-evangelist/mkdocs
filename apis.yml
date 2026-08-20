@@ -23,6 +23,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mkdocs.png
 tags:
   - Documentation
   - Markdown
+  - Open-Source
+  - Python
+  - Static Site Generator
+tags_raw:
+  - Documentation
+  - Markdown
   - Open Source
   - Python
   - Static Site Generator
