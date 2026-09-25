@@ -50,6 +50,8 @@ modified: '2026-04-28'
 specificationVersion: '0.23'
 apis: []
 common:
+  - type: VendorFacets
+    url: vendor-facets/mkdocs-vendor-facets.yml
   - type: DomainSecurity
     url: security/mkdocs-domain-security.yml
   - type: Website

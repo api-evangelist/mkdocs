@@ -1,0 +1,206 @@
+# Vendor facets — MkDocs. An open-source static site generator for project docs, almost always
+# paired with Material for MkDocs and community plugins. Self-hosted on the provider's own domain,
+# so what it produces reads as first-party, but the realistic kit is thin: documentation and blog
+# pointers, an llms.txt via a community plugin now in maintenance mode, and OpenAPI rendering with
+# no try-it console. Nothing reaches Agent Readiness beyond that, and nothing touches the contract.
+vendor: mkdocs
+name: MkDocs
+website: https://www.mkdocs.org
+areas:
+- documentation
+registry_keys:
+- mkdocs
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  MkDocs with Material for MkDocs gives a provider a self-hosted documentation site, a blog, and (through
+  the community mkdocs-llmstxt plugin) an llms.txt that reads as the provider's own because it is built
+  from its pages on its domain. That is most of the realistic lift. The OpenAPI plugins render a reference
+  page without a try-it console, the llms.txt plugin is in maintenance mode, Material's own pages now
+  promote Zensical, a new generator from the same team, and there is no MCP server, skills, agent card
+  or well-known file in the ecosystem pages reviewed.
+features:
+- id: static-site
+  name: MkDocs static site generator
+  description: >-
+    Builds a static documentation site from Markdown and a YAML config, deployable to GitHub Pages, S3
+    or any host the provider controls.
+  source: https://www.mkdocs.org/
+  tier: open-source
+- id: material-blog
+  name: Material for MkDocs blog plugin
+  description: A built-in blog plugin that generates paginated posts, archives and category pages.
+  source: https://squidfunk.github.io/mkdocs-material/plugins/blog/
+  tier: open-source
+- id: mkdocs-llmstxt
+  name: mkdocs-llmstxt (community)
+  description: >-
+    Generates llms.txt, an optional llms-full.txt and Markdown versions of pages; the project is in maintenance
+    mode.
+  source: https://github.com/pawamoy/mkdocs-llmstxt
+  tier: open-source
+- id: neoteroi-oad
+  name: Neoteroi OpenAPI documentation plugin (community)
+  description: >-
+    Generates reference documentation pages from OpenAPI specification files; no try-it console is described.
+  source: https://github.com/Neoteroi/mkdocs-plugins
+  tier: open-source
+- id: zensical-successor
+  name: Zensical, the Material team's successor generator
+  description: Material for MkDocs' own pages promote Zensical, a new static site generator from the same
+    team.
+  source: https://squidfunk.github.io/mkdocs-material/plugins/blog/
+  tier: open-source
+maps:
+- feature: static-site
+  check: documentation_present
+  layer: composite
+  provider_must: Declare the site as a Documentation pointer.
+  catalog_pass_rate: 0.453
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.95
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: material-blog
+  check: blog_present
+  layer: composite
+  provider_must: Post to it and declare it as a Blog pointer.
+  catalog_pass_rate: 0.529
+  facet: developer_ergonomics
+  points: 1
+  baseline_pass_rate: 0.731
+- feature: mkdocs-llmstxt
+  check: llms_txt_published
+  layer: composite
+  provider_must: Install and configure the community plugin; MkDocs does not generate llms.txt itself.
+  note: >-
+    Built from the provider's own pages and served on the provider's host, so it reads as the provider's
+    llms.txt. The plugin is in maintenance mode.
+  catalog_pass_rate: 0.351
+  facet: discoverability
+  points: 4
+  baseline_pass_rate: 0.65
+- feature: neoteroi-oad
+  check: api_reference_present
+  layer: composite
+  provider_must: Render its OpenAPI with the plugin and declare the page as an APIReference pointer.
+  catalog_pass_rate: 0.222
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.942
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: neoteroi-oad
+  check: openapi_examples
+  layer: agent_readiness
+  grade: documented
+  partial: true
+  partial_note: >-
+    The dimension reads examples inside the OpenAPI first; a rendered reference page reaches at most the
+    Examples / Code Samples link fallback, and only if the provider declares it.
+  points: 7
+  baseline_pass_rate: 0.36
+earns_nothing:
+- feature: neoteroi-oad
+  check: console_or_sandbox
+  why: >-
+    The OpenAPI plugin renders documentation only; no try-it console is described, so there is nothing
+    to declare as a Console.
+- feature: static-site
+  check: well_known_published
+  why: >-
+    Nothing in MkDocs or the plugins reviewed serves an api-catalog, security.txt or protected-resource
+    document.
+out_of_reach:
+  checks:
+  - mcp_server
+  - agent_skills
+  - agent_card
+  - change_log_present
+  - sdk_count_1
+  - cli_present
+  - postman_present
+  - rules_present
+  - contract_present
+  note: >-
+    The MkDocs pages and plugins reviewed offer no MCP server, skills, agent card, changelog feature,
+    SDKs, CLI, collection or ruleset, and the generator documents a contract the provider already has.
+unscored_practice:
+- feature: mkdocs-llmstxt
+  why: The Markdown page copies the plugin writes are an agent-facing format no check reads.
+surface:
+  discoverability:
+    reachable: 4.0
+    total: 54
+  developer_ergonomics:
+    reachable: 8.0
+    total: 42
+  agent_readiness:
+    reachable: 1.8
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://github.com/Neoteroi/mkdocs-plugins
+- https://github.com/pawamoy/mkdocs-llmstxt
+- https://squidfunk.github.io/mkdocs-material/plugins/blog/
+- https://www.mkdocs.org/
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 23
+    in_baseline: 13
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5203
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 13 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 7760
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 1.2
+    p75: 2.2
+    p90: 2.7
+    max: 4.6
+    mean_among_movers: 1.8
+  agent_readiness_lift:
+    median: 1.2
+    p75: 1.3
+    p90: 1.3
+    max: 1.5
+    mean_among_movers: 1.3
+  facet_lift_median_among_movers:
+    discoverability: 7.4
+    developer_ergonomics: 7.2
+  composite_band_moves:
+    thin -> developing: 521
+    emerging -> thin: 180
+    developing -> strong: 152
+    strong -> exemplar: 40
+    minimal -> emerging: 2
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 201
+    agent-ready -> agent-native: 28
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
