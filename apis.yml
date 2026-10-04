@@ -9,15 +9,20 @@ description: >-
   development server, and one-command deployment to GitHub Pages.
 type: Index
 deliveryModel:
-  model: unknown
-  open_source: false
+  model: self-hosted
+  license: BSD-2-Clause
+  license_evidence:
+    repo: mkdocs/mkdocs
+    spdx: BSD-2-Clause
+    stars: 22467
+  open_source: true
   commercial: false
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Self-hosted open source · you run it yourself
+  confidence: medium
   source:
-  - none
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -34,7 +39,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mkdocs.png
 tags:
   - Documentation
   - Markdown
-  - Open-Source
+  - Open Source
   - Python
   - Static Site Generator
 tags_raw:
@@ -43,6 +48,7 @@ tags_raw:
   - Open Source
   - Python
   - Static Site Generator
+  - Open-Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/mkdocs/refs/heads/main/apis.yml
 created: '2026-03-18'
