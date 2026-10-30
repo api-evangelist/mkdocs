@@ -64,18 +64,100 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MkDocs is a fast, simple, and beautiful static site generator designed for building project documentation from Markdown source files. Written in Python, it reads a single YAML configuration file (`mkdocs.yml`) and converts a directory of Markdown documents into a self-contained static HTML site.
+MkDocs is a fast, simple, and beautiful static site generator designed for building project documentation from Markdown source files. Written in Python, it reads a single YAML configuration file (mkdocs.yml) and converts a directory of Markdown documents into a self-contained static HTML site. MkDocs supports multiple built-in themes (mkdocs, readthedocs), a rich plugin ecosystem via Python entry points, live-reloading development server, and one-command deployment to GitHub Pages.
 
-MkDocs supports multiple built-in themes (`mkdocs`, `readthedocs`), a rich plugin ecosystem via Python entry points, a live-reloading development server (`mkdocs serve`), and one-command deployment to GitHub Pages (`mkdocs gh-deploy`). Its plugin API exposes a comprehensive set of build pipeline event hooks that allow third-party plugins to customize every phase of the build, from configuration loading and file discovery through Markdown rendering and final HTML output.
+**Areas:** Documentation · Markdown · Open Source · Python · Static Site Generator
 
-- **Website:** https://www.mkdocs.org
-- **Documentation:** https://www.mkdocs.org/user-guide/
-- **GitHub:** https://github.com/mkdocs/mkdocs
+## MkDocs on APIs.io
 
-## Artifacts
+Everything profiled for MkDocs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mkdocs/](https://apis.io/providers/mkdocs/)** — or go straight to one of the APIs or properties below.
 
-| Type | File | Description |
-|------|------|-------------|
-| JSON Schema | [json-schema/mkdocs-config-schema.json](json-schema/mkdocs-config-schema.json) | Schema for the `mkdocs.yml` project configuration file |
-| JSON Schema | [json-schema/mkdocs-plugin-schema.json](json-schema/mkdocs-plugin-schema.json) | Schema for describing MkDocs plugin definitions and event hooks |
-| JSON-LD | [json-ld/mkdocs-context.jsonld](json-ld/mkdocs-context.jsonld) | Linked data context mapping MkDocs entities to standard vocabularies |
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### JSON Schema (2)
+
+The data models the API reads and writes.
+
+- [MkDocs Configuration](https://apis.io/schemas/mkdocs/mkdocs-config/)
+- [MkDocs Plugin](https://apis.io/schemas/mkdocs/mkdocs-plugin/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Mkdocs Context](https://apis.io/jsonld/mkdocs/mkdocs-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [MkDocs — jsonschema rules](https://apis.io/rules/mkdocs/mkdocs-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mkdocs Domain Security](https://apis.io/security/mkdocs/mkdocs-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.mkdocs.org)
+- [Documentation](https://www.mkdocs.org/user-guide/)
+- [Getting started](https://www.mkdocs.org/getting-started/)
+
+## API Evangelist rating
+
+**Kin Score 12.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 6.7 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 0.0 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mkdocs/](https://apis.io/providers/mkdocs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MkDocs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mkdocs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
